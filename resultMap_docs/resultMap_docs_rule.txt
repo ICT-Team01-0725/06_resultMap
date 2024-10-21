@@ -1,0 +1,9 @@
+# resultMap_docs 규칙
+
+-- 본인이니셜_resultMap_doc
+-- 확장자는 pdf로 고정
+-- Commit 후, pdf가 정상적으로 열리는지 확인하기
+
+예시)
+
+KKS_resultMap_doc

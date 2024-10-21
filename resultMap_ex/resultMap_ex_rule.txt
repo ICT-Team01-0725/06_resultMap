@@ -1,0 +1,21 @@
+# resultMap_ex 폴더 경로 규칙
+
+-- 06_resultMap 리포지터리 안, 
+-- resultMap_ex/ 본인이니셜/ 파일들
+
+예시)
+
+resultMap_ex/KKS/ ~
+
+
+
+# resultMap_ex 파일 명명 규칙
+
+-- 자유로운 파일명 끝에 자신의 이니셜 추가하기
+-- 확장자별 명명시, 대소문자 확인하기
+
+예시)
+
+Result_kks.java
+result_kks.jsp
+result_kks.xml

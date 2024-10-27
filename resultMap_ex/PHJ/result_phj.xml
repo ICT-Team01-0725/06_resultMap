@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- UserMapper.xml -->
+<mapper namespace="com.example.mapper.UserMapper">
+    <!-- resultMap 정의 -->
+    <resultMap id="userResultMap" type="com.example.model.User">
+        <id property="id" column="user_id"/> <!-- 기본키 매핑 -->
+        <result property="name" column="user_name"/>
+        <result property="email" column="user_email"/>
+    </resultMap>
+
+    <!-- SQL 쿼리 작성 -->
+    <select id="getUserById" resultMap="userResultMap">
+        SELECT user_id, user_name, user_email
+        FROM users
+        WHERE user_id = #{id}
+    </select>
+</mapper>

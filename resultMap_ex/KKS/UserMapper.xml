@@ -1,0 +1,51 @@
+<!-- UserMapper.xml - MyBatis 매퍼 XML 파일로, resultMap 및 SQL 쿼리 정의 -->
+
+<mapper namespace="com.example.UserMapper">
+
+    <!-- 예제 1: 기본적인 resultMap -->
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="user_id"/>
+        <result property="username" column="user_name"/>
+        <result property="email" column="user_email"/>
+    </resultMap>
+
+    <select id="selectUserById" parameterType="int" resultMap="userResultMap">
+        SELECT user_id, user_name, user_email FROM users WHERE user_id = #{id}
+    </select>
+
+    <!-- 예제 2: 다중 객체 매핑 -->
+    <resultMap id="userWithAddressResultMap" type="User">
+        <id property="id" column="user_id"/>
+        <result property="username" column="user_name"/>
+        <association property="address" javaType="Address">
+            <id property="id" column="address_id"/>
+            <result property="city" column="city"/>
+            <result property="street" column="street"/>
+        </association>
+    </resultMap>
+
+    <select id="selectUserWithAddress" parameterType="int" resultMap="userWithAddressResultMap">
+        SELECT u.user_id, u.user_name, a.address_id, a.city, a.street
+        FROM users u
+        JOIN addresses a ON u.address_id = a.address_id
+        WHERE u.user_id = #{id}
+    </select>
+
+    <!-- 예제 3: 컬렉션 매핑 -->
+    <resultMap id="userWithOrdersResultMap" type="User">
+        <id property="id" column="user_id"/>
+        <result property="username" column="user_name"/>
+        <collection property="orders" ofType="Order">
+            <id property="id" column="order_id"/>
+            <result property="product" column="product_name"/>
+            <result property="quantity" column="quantity"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectUserWithOrders" parameterType="int" resultMap="userWithOrdersResultMap">
+        SELECT u.user_id, u.user_name, o.order_id, o.product_name, o.quantity
+        FROM users u
+        LEFT JOIN orders o ON u.user_id = o.user_id
+        WHERE u.user_id = #{id}
+    </select>
+</mapper>
